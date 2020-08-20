@@ -1,5 +1,9 @@
 name: 'Configure Kubectl with StrongDM'
 description: 'Setup kubectl config using StrongDM CLI'
+author: 'software.com'
+branding:
+  icon: settings
+  color: blue
 inputs:
   sdm-admin-token:
     description: 'Token for SDM service account'
