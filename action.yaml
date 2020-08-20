@@ -1,0 +1,19 @@
+name: 'Configure Kubectl with StrongDM'
+description: 'Setup kubectl config using StrongDM CLI'
+inputs:
+  sdm-admin-token:
+    description: 'Token for SDM service account'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - run: curl -J -L -o sdm.zip https://app.strongdm.com/releases/cli/linux
+      shell: bash
+    - run: unzip sdm.zip
+      shell: bash
+    - run: sudo ./sdm install --admin-token=${{ inputs.sdm-admin-token }}
+      shell: bash
+    - run: sdm login --admin-token=${{ inputs.sdm-admin-token }}
+      shell: bash
+    - run: sdm k8s update-config
+      shell: bash
