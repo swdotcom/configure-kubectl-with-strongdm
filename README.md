@@ -14,7 +14,7 @@ The workflow runner you are using must have kubectl installed. All of Github's h
 
 # Usage
 
-See [action.yml](action.yml)
+See [action.yaml](action.yaml)
 
 ## Example usage
 
