@@ -19,7 +19,7 @@ See [action.yaml](action.yaml)
 ## Example usage
 
 ```yaml
-- name: name: Configure Kubectl with StrongDM
+- name: Configure Kubectl with StrongDM
   uses: swdotcom/configure-kubectl-with-strongdm@v1
   with:
     sdm-admin-token: ${{ secrets.SDM_ADMIN_TOKEN }}
