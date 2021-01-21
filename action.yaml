@@ -11,13 +11,18 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - run: curl -J -L -o sdm.zip https://app.strongdm.com/releases/cli/linux
+    - name: Download StrongDM
+      run: curl -J -L -o sdm.zip https://app.strongdm.com/releases/cli/linux
       shell: bash
-    - run: unzip sdm.zip
+    - name: Unzip StrongDM
+      run: unzip sdm.zip
       shell: bash
-    - run: sudo ./sdm install --admin-token=${{ inputs.sdm-admin-token }}
+    - name: Install StrongDM
+      run: sudo ./sdm install --admin-token=${{ inputs.sdm-admin-token }}
       shell: bash
-    - run: sdm login --admin-token=${{ inputs.sdm-admin-token }}
+    - name: Login to StrongDM
+      run: sdm login --admin-token=${{ inputs.sdm-admin-token }}
       shell: bash
-    - run: sdm k8s update-config
+    - name: Update StrongDM config
+      run: sdm k8s update-config
       shell: bash
