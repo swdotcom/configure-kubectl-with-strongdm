@@ -8,11 +8,15 @@ inputs:
   sdm-admin-token:
     description: 'Token for SDM service account'
     required: true
+  sdm-download-url:
+    description: 'Custom SDM CLI download URL. If not provided the default will be used'
+    required: false
+    default: https://app.strongdm.com/releases/cli/linux
 runs:
   using: 'composite'
   steps:
     - name: Download StrongDM
-      run: curl -J -L -o sdm.zip https://app.strongdm.com/releases/cli/linux
+      run: curl -J -L -o sdm.zip ${{ inputs.sdm-download-url }}
       shell: bash
     - name: Unzip StrongDM
       run: unzip sdm.zip
