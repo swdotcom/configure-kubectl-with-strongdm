@@ -24,3 +24,19 @@ See [action.yaml](action.yaml)
   with:
     sdm-admin-token: ${{ secrets.SDM_ADMIN_TOKEN }}
 ```
+
+If you're having issues with the action successfully completing, then StrongDM may have bumped your organization to a later release of the CLI.
+
+> Thanks for contacting Support! I'd be happy to help with the question. Behind the scenes, strongDM has a progressive sequence of release channels; on occasion, we may need to accelerate a fix or enhancement to your organization.
+>
+> The additional string is optional, and handles the cases where a custom or early release build has been configured for use in your organization. With the string omitted, you will always receive the "stable" build.
+
+To use your organizations CLI version then set the appropriate download URL. You can find your URL [here](https://app.strongdm.com/app/download).
+
+```yaml
+- name: Configure Kubectl with StrongDM
+  uses: swdotcom/configure-kubectl-with-strongdm@v1
+  with:
+    sdm-admin-token: ${{ secrets.SDM_ADMIN_TOKEN }}
+    sdm-download-url: https://app.strongdm.com/releases/cli/linux/<organization name>
+```
