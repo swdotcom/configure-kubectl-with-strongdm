@@ -12,6 +12,11 @@ inputs:
     description: 'Custom SDM CLI download URL. If not provided the default will be used'
     required: false
     default: https://app.strongdm.com/releases/cli/linux
+  sdm-stdout-logs:
+    description: 'If true, logs go to STDOUT rather than sdm.log'
+    required: false
+    default: 'true'
+
 runs:
   using: 'composite'
   steps:
@@ -24,8 +29,8 @@ runs:
     - name: Install StrongDM
       run: sudo ./sdm install --admin-token=${{ inputs.sdm-admin-token }}
       shell: bash
-    - name: Login to StrongDM
-      run: sdm login --admin-token=${{ inputs.sdm-admin-token }}
+    - name: Login to StrongDM and listen for local connections
+      run: SDM_DOCKERIZED=${{ inputs.sdm-stdout-logs }} sdm login --admin-token=${{ inputs.sdm-admin-token }} && sdm listen & 
       shell: bash
     - name: Update StrongDM config
       run: sdm k8s update-config
