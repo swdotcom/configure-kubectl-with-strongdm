@@ -21,8 +21,8 @@ runs:
     - name: Unzip StrongDM
       run: unzip sdm.zip
       shell: bash
-    - name: Install StrongDM
-      run: sudo ./sdm install --admin-token=${{ inputs.sdm-admin-token }}
+    - name: Nologin during install
+      run:  sudo ./sdm install --nologin
       shell: bash
     - name: Login to StrongDM
       run: sdm login --admin-token=${{ inputs.sdm-admin-token }}
