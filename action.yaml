@@ -21,7 +21,7 @@ runs:
     - name: Unzip StrongDM
       run: unzip sdm.zip
       shell: bash
-    - name: Nologin during install
+    - name: Install StrongDM
       run: sudo ./sdm install --nologin
       shell: bash
     - name: Login to StrongDM
