@@ -22,7 +22,7 @@ runs:
       run: unzip sdm.zip
       shell: bash
     - name: Install StrongDM
-      run: sudo ./sdm install --nologin
+      run: sudo ./sdm install --admin-token=${{ inputs.sdm-admin-token }}
       shell: bash
     - name: Login to StrongDM
       run: sdm login --admin-token=${{ inputs.sdm-admin-token }}
