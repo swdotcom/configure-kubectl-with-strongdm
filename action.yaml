@@ -38,3 +38,6 @@ runs:
     - name: Update StrongDM config
       run: sdm k8s update-config
       shell: bash
+    - name: Wait for auto connect
+      run: sleep 5
+      shell: bash
