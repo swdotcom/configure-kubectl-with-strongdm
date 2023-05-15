@@ -39,5 +39,10 @@ runs:
       run: sdm k8s update-config
       shell: bash
     - name: Wait for auto connect
-      run: sleep 5
+      run: |
+        while [ $( kubectl version -o json | jq 'has("serverVersion")' ) = false ];
+        do
+          sleep 1
+          echo "waiting for connection"
+        done
       shell: bash
