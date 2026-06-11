@@ -16,8 +16,24 @@ runs:
   using: 'composite'
   steps:
     - name: Download StrongDM
-      run: curl -J -L -o sdm.zip ${{ inputs.sdm-download-url }}
       shell: bash
+      run: |
+        for attempt in 1 2 3 4 5; do
+          echo "Download attempt $attempt..."
+          curl -J -L -o sdm.zip ${{ inputs.sdm-download-url }}
+
+          SIZE=$(wc -c < sdm.zip)
+          echo "Downloaded ${SIZE} bytes"
+
+          if file sdm.zip | grep -q "Zip archive" && [ "$SIZE" -gt 1000000 ]; then
+            echo "Download verified OK"
+            break
+          fi
+
+          echo "Bad download (${SIZE} bytes). Response body:"
+          cat sdm.zip
+          [ $attempt -lt 5 ] && sleep 15 || { echo "All download attempts failed"; exit 1; }
+        done
     - name: Unzip StrongDM
       run: unzip sdm.zip
       shell: bash
